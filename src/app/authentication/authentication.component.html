@@ -1,0 +1,30 @@
+<app-title [description]="'Авторизация работника'"></app-title>
+<div class="current-user-container" *ngIf="currentUser">
+  <p>Id: {{ currentUser.id }}</p>
+  <p>Имя: {{ currentUser.firstName }}</p>
+  <p>Фамилия: {{ currentUser.lastName }}</p>
+</div>
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Имя</th>
+      <th>Фамилия</th>
+      <th>Дата рождения</th>
+      <th>Регистрация</th>
+    </tr>
+  </thead>
+  <tbody class="tbody-class">
+    <tr *ngFor="let user of users">
+      <td>
+        {{ user.id }}
+      </td>
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.birthDate }}</td>
+      <td [ngStyle]="{ width: '100px' }">
+        <button (click)="setCurrentUser(user.id)">Выбрать</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

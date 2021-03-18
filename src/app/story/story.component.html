@@ -1,0 +1,30 @@
+<div class="container">
+  <table class="styled-table" *ngIf="productHistoryOfEmployee">
+    <thead>
+      <tr>
+        <th>INVНомер</th>
+        <th>Обозначение продукта</th>
+        <th>Описание</th>
+        <th>Обем</th>
+        <th>Вес</th>
+        <th>Дата прибытия</th>
+        <th>Дата отправления</th>
+      </tr>
+    </thead>
+    <tbody class="tbody-class">
+      <tr *ngFor="let product of productHistoryOfEmployee">
+        <td>
+          {{ product.invnumber }}
+        </td>
+        <td>
+          {{ product.productName }}
+        </td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.volume }}</td>
+        <td>{{ product.weight }}</td>
+        <td>{{ product.arrivalDate }}</td>
+        <td>{{ product.shipmentDate }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

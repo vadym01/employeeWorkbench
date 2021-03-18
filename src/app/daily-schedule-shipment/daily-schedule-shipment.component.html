@@ -1,0 +1,82 @@
+<app-title [description]="'План работы на день(отгрузка товара)'"></app-title>
+<div *ngIf="productToProceed" id="product-container">
+  <div id="product-info-container">
+    <p>Товар для обработки</p>
+    <br />
+    <p>
+      INVНомер:
+      {{ productToProceed.invnumber }}
+    </p>
+    <p>
+      Обозначение продукта:
+      {{ productToProceed.productName }}
+    </p>
+    <p>
+      Описание:
+      {{ productToProceed.description }}
+    </p>
+    <p>
+      Обем:
+      {{ productToProceed.volume }}
+    </p>
+    <p>
+      Вес:
+      {{ productToProceed.weight }}
+    </p>
+    <p>
+      Дата прибытия:
+      {{ productToProceed.arrivalDate }}
+    </p>
+    <p>
+      Дата отправления:
+      {{ productToProceed.shipmentDate }}
+    </p>
+  </div>
+  <div id="product-action-container">
+    <button (click)="finishShipmentProcess(productToProceed.invnumber)">
+      Подтвердить отправку
+    </button>
+  </div>
+</div>
+
+<hr />
+<table class="styled-table" *ngIf="productsToProceed">
+  <thead>
+    <tr>
+      <th>INVНомер</th>
+      <th>Обозначение продукта</th>
+      <th>Описание</th>
+      <th>Обем</th>
+      <th>Вес</th>
+      <th>Дата приема товара</th>
+      <th>Дата загрузки товара</th>
+      <th>Планированая дата отправления</th>
+      <th>Действия</th>
+    </tr>
+  </thead>
+  <tbody class="tbody-class">
+    <tr *ngFor="let product of productsToProceed; let indexOfElement = index">
+      <td>
+        {{ product.invnumber }}
+      </td>
+      <td>
+        {{ product.productName }}
+      </td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.volume }}</td>
+      <td>{{ product.weight }}</td>
+      <td>{{ product.receiptDate }}</td>
+      <td>{{ product.arrivalDate }}</td>
+      <td>{{ product.scheduledShipmentDate }}</td>
+      <td [ngStyle]="{ width: '100px' }">
+        <button
+          (click)="
+            setProductForShipmentProcess(product.invnumber, indexOfElement)
+          "
+        >
+          Выбрать
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,10 @@
+::ng-deep * {
+  margin: 0;
+  padding: 0;
+}
+
+:host {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  grid-template-rows: 1fr;
+}

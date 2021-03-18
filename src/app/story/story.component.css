@@ -1,0 +1,60 @@
+table {
+  width: 80%;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#product-info-table {
+  margin-top: 20px;
+}
+
+#product-container {
+  display: flex;
+  /* grid-template-columns: 1fr 1fr; */
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  font-size: 1.3em;
+  text-align: left;
+}
+
+#product-action-container {
+  margin-left: 50px;
+}
+
+.current-user-container {
+  margin: 10px;
+}
+
+.styled-table {
+  font-size: 1em;
+  min-width: 300px;
+  -webkit-box-shadow: 0px 4px 37px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 4px 37px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 4px 37px 0px rgba(34, 60, 80, 0.2);
+}
+
+.styled-table thead tr {
+  background-color: black;
+  color: white;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
