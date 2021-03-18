@@ -15,6 +15,7 @@ export class DailyScheduleShipmentComponent implements OnInit {
   todayDate: string;
   productsToProceed: ProductToProceed[];
   productToProceed: ProductToProceed;
+  isAuthenticated: boolean = false;
 
   constructor(
     private productDataService: ProductDataService,
@@ -24,6 +25,9 @@ export class DailyScheduleShipmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    localStorage.getItem('userId') !== null
+      ? (this.isAuthenticated = true)
+      : false;
     const currentInvForShipment = +localStorage.getItem(
       'currentInvForShipment'
     );
@@ -31,16 +35,13 @@ export class DailyScheduleShipmentComponent implements OnInit {
       .getProductListByDate(this.todayDate, true)
       .subscribe(
         (data) => {
-          console.log(data);
           if (currentInvForShipment) {
             this.productToProceed = data.filter(
               (inv) => inv.invnumber === currentInvForShipment
             )[0];
-            console.log(this.productToProceed);
             const indexForFilter = data.findIndex(
               (invInst) => invInst.invnumber === currentInvForShipment
             );
-            console.log('indexFFF' + indexForFilter);
             this.productsToProceed = data.splice(indexForFilter, 1);
           } else {
             this.productsToProceed = data;

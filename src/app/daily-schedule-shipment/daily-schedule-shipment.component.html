@@ -33,7 +33,10 @@
     </p>
   </div>
   <div id="product-action-container">
-    <button (click)="finishShipmentProcess(productToProceed.invnumber)">
+    <button
+      (click)="finishShipmentProcess(productToProceed.invnumber)"
+      [disabled]="!isAuthenticated"
+    >
       Подтвердить отправку
     </button>
   </div>
@@ -73,6 +76,7 @@
           (click)="
             setProductForShipmentProcess(product.invnumber, indexOfElement)
           "
+          [disabled]="!isAuthenticated"
         >
           Выбрать
         </button>

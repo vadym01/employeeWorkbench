@@ -7,7 +7,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TitleComponent implements OnInit {
   @Input() description: string;
+  @Input() authenticationStatus: boolean = false;
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    localStorage.getItem('userId') !== null
+      ? (this.authenticationStatus = true)
+      : false;
+  }
 }

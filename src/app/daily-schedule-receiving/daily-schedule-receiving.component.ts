@@ -15,8 +15,13 @@ export class DailyScheduleReceivingComponent implements OnInit {
   productsToProceed: ProductToProceed[];
   currentProductToProceed: ProductToProceed;
   productLoadedByEmployeeInfo: ProductLoadedByEmployeeInfo;
+  isAuthenticated: boolean;
 
   ngOnInit(): void {
+    localStorage.getItem('userId') !== null
+      ? (this.isAuthenticated = true)
+      : false;
+
     this.productDataService.getProductListToProceed().subscribe((data) => {
       this.productsToProceed = data;
       const currentProductINVNumber = +localStorage.getItem(

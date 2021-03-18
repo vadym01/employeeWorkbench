@@ -1,1 +1,4 @@
-<p id="description">{{ description }}</p>
+<p class="description">{{ description }}</p>
+<p *ngIf="!authenticationStatus" class="description" id="authentication-alert">
+  Войдите в систему
+</p>

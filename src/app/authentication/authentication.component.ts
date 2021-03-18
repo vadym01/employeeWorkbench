@@ -12,7 +12,8 @@ import { UserDataService } from '../services/user-data/user-data.service';
 export class AuthenticationComponent implements OnInit {
   users: User[] = [];
   currentUser: User;
-  public id: number;
+  id: number;
+  isAuthenticated: boolean;
 
   constructor(private userDataService: UserDataService) {}
 
@@ -26,9 +27,16 @@ export class AuthenticationComponent implements OnInit {
   }
 
   setCurrentUser(id: number) {
+    this.isAuthenticated = true;
     localStorage.setItem('userId', String(id));
     this.id = id;
     const currentIndex = this.users.findIndex((data) => data.id === id);
     this.currentUser = this.users[currentIndex];
+  }
+
+  onLogOutCLickHandler() {
+    this.currentUser = null;
+    this.isAuthenticated = false;
+    localStorage.removeItem('userId');
   }
 }

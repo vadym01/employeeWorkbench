@@ -1,9 +1,13 @@
-<app-title [description]="'Авторизация работника'"></app-title>
+<app-title
+  [description]="'Авторизация работника'"
+  [authenticationStatus]="isAuthenticated"
+></app-title>
 <div class="current-user-container" *ngIf="currentUser">
   <p>Id: {{ currentUser.id }}</p>
   <p>Имя: {{ currentUser.firstName }}</p>
   <p>Фамилия: {{ currentUser.lastName }}</p>
 </div>
+<button (click)="onLogOutCLickHandler()" *ngIf="isAuthenticated">logOut</button>
 <table class="styled-table">
   <thead>
     <tr>
