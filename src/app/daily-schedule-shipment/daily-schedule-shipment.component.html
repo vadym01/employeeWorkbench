@@ -1,4 +1,9 @@
 <app-title [description]="'План работы на день(отгрузка товара)'"></app-title>
+<app-error-message
+  [technicalError]="error"
+  [customErrorMessage]="'Внутренняя ошибка сервера'"
+  *ngIf="error"
+></app-error-message>
 <div *ngIf="productToProceed" id="product-container">
   <div id="product-info-container">
     <p>Товар для обработки</p>

@@ -22,19 +22,10 @@ export class ProductDataService {
   updateProductLoadedBy(
     productLoadedByEmployeeInfo: ProductLoadedByEmployeeInfo
   ) {
-    return this.http
-      .patch(
-        this.baseUrl + 'product/update/begin/proceed',
-        productLoadedByEmployeeInfo
-      )
-      .subscribe(
-        (response) => {
-          // console.log(response);
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
+    return this.http.patch(
+      this.baseUrl + 'product/update/begin/proceed',
+      productLoadedByEmployeeInfo
+    );
   }
 
   getProductByInv(inv: number) {
@@ -44,16 +35,10 @@ export class ProductDataService {
   }
 
   submitProceededProduct(invnumber: number) {
-    return this.http
-      .patch(this.baseUrl + `product/submit/proceeded/${invnumber}`, null)
-      .subscribe(
-        (result) => {
-          console.log(result);
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
+    return this.http.put(
+      this.baseUrl + `product/submit/proceeded/${invnumber}`,
+      null
+    );
   }
 
   getProductHistoryByUserId(userId: number) {
@@ -69,34 +54,16 @@ export class ProductDataService {
   }
 
   updateProductForShipmentProcess(userId: number, productId: number) {
-    return this.http
-      .patch(
-        this.baseUrl + `product/update/begin/shipment/${userId}/${productId}`,
-        null
-      )
-      .subscribe(
-        (data) => {
-          console.log(data);
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
+    return this.http.patch(
+      this.baseUrl + `product/update/begin/shipment/${userId}/${productId}`,
+      null
+    );
   }
 
   updateTheConfirmationOfShipmentProcess(INVNumber: number, isSent: boolean) {
-    return this.http
-      .patch(
-        this.baseUrl + `product/update/confirm/shipment/${INVNumber}/${isSent}`,
-        null
-      )
-      .subscribe(
-        (data) => {
-          console.log(data);
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
+    return this.http.patch(
+      this.baseUrl + `product/update/confirm/shipment/${INVNumber}/${isSent}`,
+      null
+    );
   }
 }

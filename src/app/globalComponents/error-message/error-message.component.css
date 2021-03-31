@@ -1,0 +1,40 @@
+#error-message {
+  margin: 0 auto;
+  width: 40%;
+  border-radius: 5px;
+  text-align: center;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 1.1em;
+  background: rgb(239, 137, 137);
+  color: rgb(50, 0, 0);
+}
+
+#error-container {
+  margin: 0 auto;
+  width: 40%;
+  border-radius: 5px;
+  text-align: center;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 1.1em;
+  background: rgb(239, 137, 137);
+  color: rgb(50, 0, 0);
+}
+
+#custom-error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+i {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+#technical-error-container {
+  margin-top: 5px;
+}

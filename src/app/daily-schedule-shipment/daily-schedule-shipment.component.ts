@@ -3,6 +3,7 @@ import { ProductDataService } from '../services/product-data/product-data.servic
 import { DatePipe } from '@angular/common';
 import { ProductToProceed } from '../services/model/product-to-proceed.model';
 import { error } from 'protractor';
+import { ErrorReport } from '../services/model/error.model';
 
 @Component({
   selector: 'app-daily-schedule-shipment',
@@ -16,6 +17,7 @@ export class DailyScheduleShipmentComponent implements OnInit {
   productsToProceed: ProductToProceed[];
   productToProceed: ProductToProceed;
   isAuthenticated: boolean = false;
+  error: ErrorReport;
 
   constructor(
     private productDataService: ProductDataService,
@@ -49,6 +51,7 @@ export class DailyScheduleShipmentComponent implements OnInit {
           // this.productsToProceed = data
         },
         (error) => {
+          this.error = error.error;
           console.log(error);
         }
       );
@@ -59,17 +62,32 @@ export class DailyScheduleShipmentComponent implements OnInit {
     const currentProductForShipment: ProductToProceed = this.productsToProceed.filter(
       (inv) => inv.invnumber === currentInv
     )[0];
-    this.productDataService.updateProductForShipmentProcess(
-      currentUser,
-      currentInv
-    );
+    this.productDataService
+      .updateProductForShipmentProcess(currentUser, currentInv)
+      .subscribe(
+        (response) => {},
+        (error) => {
+          this.error = error.error;
+          console.error(error);
+        }
+      );
     this.productToProceed = currentProductForShipment;
     localStorage.setItem('currentInvForShipment', String(currentInv));
     this.productsToProceed.splice(index, 1);
   }
 
   finishShipmentProcess(inv: number) {
-    this.productDataService.updateTheConfirmationOfShipmentProcess(inv, false);
+    this.productDataService
+      .updateTheConfirmationOfShipmentProcess(inv, false)
+      .subscribe(
+        (data) => {
+          console.log(data);
+        },
+        (error) => {
+          this.error = error.error;
+          console.error(error);
+        }
+      );
     localStorage.removeItem('currentInvForShipment');
     this.productToProceed = null;
   }

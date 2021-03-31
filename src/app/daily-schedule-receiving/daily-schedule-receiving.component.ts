@@ -3,6 +3,7 @@ import { Product } from '../services/model/product.model';
 import { ProductDataService } from '../services/product-data/product-data.service';
 import { ProductToProceed } from '../services/model/product-to-proceed.model';
 import { ProductLoadedByEmployeeInfo } from '../services/model/product-loaded-by-employee-info';
+import { ErrorReport } from '../services/model/error.model';
 
 @Component({
   selector: 'app-daily-schedule-receiving',
@@ -16,6 +17,7 @@ export class DailyScheduleReceivingComponent implements OnInit {
   currentProductToProceed: ProductToProceed;
   productLoadedByEmployeeInfo: ProductLoadedByEmployeeInfo;
   isAuthenticated: boolean;
+  error: ErrorReport;
 
   ngOnInit(): void {
     localStorage.getItem('userId') !== null
@@ -30,10 +32,16 @@ export class DailyScheduleReceivingComponent implements OnInit {
       if (currentProductINVNumber) {
         this.productDataService
           .getProductByInv(currentProductINVNumber)
-          .subscribe((dataByInv) => {
-            this.currentProductToProceed = dataByInv;
-            console.log(dataByInv);
-          });
+          .subscribe(
+            (dataByInv) => {
+              this.currentProductToProceed = dataByInv;
+              console.log(dataByInv);
+            },
+            (error) => {
+              this.error = error.error;
+              console.error(error);
+            }
+          );
       }
     });
   }
@@ -49,15 +57,27 @@ export class DailyScheduleReceivingComponent implements OnInit {
       currentEmployeeId: currentUser,
       productId: selectedProduct.invnumber,
     };
-    this.productDataService.updateProductLoadedBy(
-      this.productLoadedByEmployeeInfo
-    );
+    this.productDataService
+      .updateProductLoadedBy(this.productLoadedByEmployeeInfo)
+      .subscribe(
+        (response) => {},
+        (error) => {
+          this.error = error.error;
+          console.error(error);
+        }
+      );
     this.currentProductToProceed = selectedProduct;
     this.productsToProceed.splice(index, 1);
   }
 
   submitProceededProduct(inv: number) {
-    this.productDataService.submitProceededProduct(inv);
+    this.productDataService.submitProceededProduct(inv).subscribe(
+      (response) => {},
+      (error) => {
+        this.error = error.error;
+        console.error(error);
+      }
+    );
     localStorage.removeItem('currentProductToProceedInv');
     this.currentProductToProceed = null;
   }

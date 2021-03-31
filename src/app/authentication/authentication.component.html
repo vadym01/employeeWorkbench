@@ -2,6 +2,11 @@
   [description]="'Авторизация работника'"
   [authenticationStatus]="isAuthenticated"
 ></app-title>
+<app-error-message
+  [technicalError]="error"
+  [customErrorMessage]="'Внутренняя ошибка сервера'"
+  *ngIf="error"
+></app-error-message>
 <div class="current-user-container" *ngIf="currentUser">
   <p>Id: {{ currentUser.id }}</p>
   <p>Имя: {{ currentUser.firstName }}</p>

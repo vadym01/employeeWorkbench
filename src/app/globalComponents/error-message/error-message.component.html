@@ -1,0 +1,26 @@
+<!-- <p id="error-message" *ngIf="errorMessage">{{ errorMessage }}</p> -->
+<div id="error-container" *ngIf="!hideErrorsComponent">
+  <div id="custom-error-container">
+    <p>{{ customErrorMessage }}</p>
+    <i
+      class="fa fa-chevron-down"
+      aria-hidden="true"
+      *ngIf="!displayTechnicalError"
+      (click)="onChangeDisplayStatusClickHandler()"
+    ></i>
+    <i
+      class="fa fa-chevron-up"
+      aria-hidden="true"
+      *ngIf="displayTechnicalError"
+      (click)="onChangeDisplayStatusClickHandler()"
+    ></i>
+  </div>
+  <div id="technical-error-container" *ngIf="displayTechnicalError">
+    <p>
+      {{ technicalError?.message }}
+    </p>
+    <p>
+      {{ technicalError?.status }}
+    </p>
+  </div>
+</div>

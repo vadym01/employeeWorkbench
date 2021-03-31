@@ -1,3 +1,10 @@
+<app-title [description]="'История поступлений'"></app-title>
+<app-error-message
+  [technicalError]="error"
+  [customErrorMessage]="'Внутренняя ошибка сервера'"
+  *ngIf="error"
+></app-error-message>
+
 <div class="container">
   <table class="styled-table" *ngIf="productHistoryOfEmployee">
     <thead>

@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DailyScheduleReceivingComponent } from './daily-schedule-receiving/daily-schedule-receiving.component';
 import { DailyScheduleShipmentComponent } from './daily-schedule-shipment/daily-schedule-shipment.component';
 import { TitleComponent } from './globalComponents/title/title.component';
+import { ErrorMessageComponent } from './globalComponents/error-message/error-message.component';
 
 const appRoutes: Routes = [
   { path: '', component: AuthenticationComponent },
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
     StoryComponent,
     DailyScheduleShipmentComponent,
     TitleComponent,
+    ErrorMessageComponent,
   ],
   imports: [
     BrowserModule,
